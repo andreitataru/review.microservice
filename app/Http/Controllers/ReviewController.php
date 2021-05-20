@@ -31,4 +31,33 @@ class ReviewController extends Controller
         }
     
     }
+
+    public function getReview($id){
+        {
+            try {
+                $review = Review::findOrFail($id);
+    
+                return response()->json(['review' => $review], 200);
+    
+            } catch (\Exception $e) {
+    
+                return response()->json(['message' => 'review not found!'], 404);
+            }
+    
+
+    }
+
+    public function getReview($idReviewd){
+
+        try {
+            $review = Review::findOrFail($idReviewd);
+
+            return response()->json(['review' => $review], 200);
+
+        } catch (\Exception $e) {
+
+            return response()->json(['message' => 'review not found!'], 404);
+        }
+
+    }
 }
