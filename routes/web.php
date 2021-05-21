@@ -29,11 +29,10 @@ $router->group(['middleware' => 'cors'], function () use ($router) {
     // API route group
     $router->group(['prefix' => 'api'], function () use ($router) {
 
-      $router->get('addReview', 'ReviewController@addReview');
-      $router->get('getReview', 'ReviewController@getReview');
+      $router->post('addReview', 'ReviewController@addReview');
+      $router->get('getReviewById/{id}', 'ReviewController@getReviewById');
+      $router->get('getReviewsByTarget/{id}/{type}', 'ReviewController@getReviewsByTarget');
 
-  
-      
     });
 
 });

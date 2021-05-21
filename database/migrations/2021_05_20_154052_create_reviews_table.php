@@ -18,6 +18,7 @@ class CreateReviewsTable extends Migration
             $table->bigInteger("userIdReview");
             $table->bigInteger("idReviewed");
             $table->bigInteger("rating");
+            $table->string("type"); //rating a user or a house?
             $table->timestamps();
         });
     }

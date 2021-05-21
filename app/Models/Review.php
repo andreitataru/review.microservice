@@ -12,6 +12,6 @@ class Review extends Model
      * @var array
      */
     protected $fillable = [
-        'userIdReview','idReviewed','rating'
+        'userIdReview', 'idReviewed', 'rating', 'type'
     ];
 }
