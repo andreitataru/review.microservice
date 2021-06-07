@@ -16,16 +16,22 @@ class ReviewController extends Controller
         ]);
         
         try {
-            $review = new Review;
-            $review->userIdReview = $request->userIdReview;
-            $review->idReviewed = $request->idReviewed;
-            $review->rating = $request->rating;
-            $review->type = $request->type;
-        
-            $review->save();
-           
-            //return successful response
-            return response()->json(['review' => $review, 'message' => 'CREATED'], 201);
+            if (Review::where('userIdReview', $request->userIdReview)->where('idReviewed', $request->idReviewed)->where('type', $request->type)->exists()){
+                
+                return response()->json(['message' => 'Only one review allowed'], 200);
+            }
+            else{
+                $review = new Review;
+                $review->userIdReview = $request->userIdReview;
+                $review->idReviewed = $request->idReviewed;
+                $review->rating = $request->rating;
+                $review->type = $request->type;
+            
+                $review->save();
+               
+                //return successful response
+                return response()->json(['review' => $review, 'message' => 'CREATED'], 201);
+            }
 
         } catch (\Exception $e) {
             //return error message
